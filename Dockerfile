@@ -1,9 +1,5 @@
 FROM node:22-alpine
 
-RUN apk add --no-cache tini
-
-RUN addgroup -S arsip && adduser -S -G arsip arsip
-
 WORKDIR /app
 
 COPY app/backend/package.json ./app/backend/
@@ -13,13 +9,11 @@ RUN npm --prefix app/backend install --omit=dev --no-audit --no-fund \
  && npm --prefix app/gateway install --omit=dev --no-audit --no-fund \
  && npm cache clean --force
 
-COPY app/backend/ ./app/backend/
-COPY app/gateway/ ./app/gateway/
-COPY run.sh ./run.sh
+COPY --chown=node:node . .
 
-RUN chmod +x ./run.sh
+ENV PORT=8080
+EXPOSE 8080
 
-USER arsip
+USER node
 
-ENTRYPOINT ["/sbin/tini", "--"]
-CMD ["./run.sh"]
+CMD ["sh", "run.sh"]

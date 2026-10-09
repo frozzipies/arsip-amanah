@@ -1,23 +1,8 @@
 services:
   arsip:
     build: .
-    image: redlimit/arsip-amanah
     ports:
       - "8080:8080"
     environment:
-      FLAG: "${FLAG:-REDLIMIT{d1g3st_l4m4ny4_t1d4k_d1s1mp4n}}"
-    read_only: true
-    tmpfs:
-      - /tmp
-    cap_drop:
-      - ALL
-    security_opt:
-      - no-new-privileges:true
-    mem_limit: 256m
-    cpus: 0.5
-    healthcheck:
-      test: ["CMD", "wget", "-q", "-O", "/dev/null", "http://127.0.0.1:8080/health"]
-      interval: 10s
-      timeout: 3s
-      retries: 3
-      start_period: 5s
+      - FLAG=${FLAG:-REDLIMIT{d1g3st_l4m4ny4_t1d4k_d1s1mp4n}}
+    restart: unless-stopped
