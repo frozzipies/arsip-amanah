@@ -1,0 +1,22 @@
+name: "Arsip Amanah"
+author: "RedLimit"
+category: "Web"
+value: 500
+description: |
+  Gateway nyimpen sidik jari tiap dokumen biar bisa nyari tanpa nge-hit
+  server terus-menerus. Format sidik jarinya ikut RFC 9530.
+  Ada satu dokumen yang nggak muncul di daftar publik, dan gerbang arsip
+  cuma mau kebuka buat sidik jari dia.
+flags:
+  - type: static
+    content: "REDLIMIT{d1g3st_l4m4ny4_t1d4k_d1s1mp4n}"
+    data: case_insensitive
+connection_info: "http://HOST:8080"
+tags:
+  - web
+  - mt19937
+  - prng
+  - web-cache
+  - rfc-9530
+  - path-confusion
+  - hard
